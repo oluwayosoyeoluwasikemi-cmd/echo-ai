@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Echo AI</title>
+<style>
+body{margin:0;background:#212121;color:white;font-family:Arial,sans-serif}
+header{padding:20px;font-size:22px;border-bottom:1px solid #444}
+header span{color:#8ab4f8}
+main{max-width:700px;margin:60px auto;padding:20px}
+#messages{display:flex;flex-direction:column;gap:12px}
+.msg{padding:14px;border-radius:14px;line-height:1.5;overflow-wrap:anywhere}
+.user{background:#343541;align-self:flex-end}
+.bot{background:#303030}
+form{position:fixed;bottom:0;left:0;right:0;padding:15px;background:#212121;display:flex;gap:8px}
+input{flex:1;min-width:0;padding:15px;border-radius:24px;border:1px solid #555;background:#303030;color:white;font-size:16px}
+button{padding:12px 18px;border:0;border-radius:24px;background:#8ab4f8}
+</style>
+</head>
+<body>
+<header>✦ <span>Echo</span> AI</header>
+<main>
+<h2 id="welcome">How can I help you today?</h2>
+<div id="messages"></div>
+</main>
+<form id="chat">
+<input id="prompt" placeholder="Message Echo..." required>
+<button>Send</button>
+</form>
+<script>
+const form=document.getElementById('chat');
+const input=document.getElementById('prompt');
+const messages=document.getElementById('messages');
+form.addEventListener('submit',function(e){
+e.preventDefault();
+const question=input.value.trim();
+if(!question)return;
+document.getElementById('welcome').hidden=true;
+const user=document.createElement('div');
+user.className='msg user';
+user.textContent=question;
+messages.appendChild(user);
+const reply=document.createElement('div');
+reply.className='msg bot';
+reply.textContent='Hello! I am Echo. My AI connection is coming soon!';
+messages.appendChild(reply);
+input.value='';
+window.scrollTo(0,document.body.scrollHeight);
+});
+</script>
+</body>
+  </html>
